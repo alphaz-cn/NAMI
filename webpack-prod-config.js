@@ -4,7 +4,7 @@ module.exports = {
     entry:['babel-polyfill', './app/index.jsx'],
     output:{
         path: __dirname + '/server/public/bundle',
-        filename: 'bundle-v.0.0.1.js',
+        filename: 'bundle.js',
     },
     worker: {
       output: {
