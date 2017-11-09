@@ -11,8 +11,8 @@ import { socketEmit } from '../actions/common.js'
 import Header from './Header.jsx'
 
 function handleClick(){
-    setRightManager({isShow: false});
-    changeRoom(true)(this.props.user._id);
+    //setRightManager({isShow: false});
+    //changeRoom(true)(this.props.user._id);
 }
 function handleSearch(room){
     return function(nickname='',onlineState,){

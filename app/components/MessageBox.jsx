@@ -103,7 +103,7 @@ function Menu(props){
                 <li 
                     className = 'List-item' 
                     key = {`${_id}-1`}
-                    onClick = {() => changeRoom(true)(ownerId)}
+                    //onClick = {() => changeRoom(true)(ownerId)}
                 >
                     {language.sendMessage}
                 </li >

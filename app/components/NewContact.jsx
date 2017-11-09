@@ -9,8 +9,8 @@ import ListItemWrap from '../containers/ListItemWrap.js'
 import item from '../util/item.js'
 import ListItem from './ListItem.jsx'
 function handleClick(){
-    setLeftManager({isShow: false});
-    changeRoom(true)(this.props.user._id);
+    //setLeftManager({isShow: false});
+    //changeRoom(true)(this.props.user._id);
 }
 function handleSearch(nickname = '',onlineState){
     this.setState({isLoading: true});
