@@ -4,7 +4,7 @@ export default {
         PORT: '3002'
     },
     production: {
-        HOST: 'mdzzapp.com',
+        HOST: 'alphaz.cn',
         PORT: '3002'
     },
 }
