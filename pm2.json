@@ -1,0 +1,7 @@
+{
+	apps : [{
+		name : 'NAMI',
+		script : 'server/bin/www',
+		interpreter : 'node@8.0.0'
+	}]
+}
