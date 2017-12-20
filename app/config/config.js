@@ -1,5 +1,5 @@
 export default {
-    MAXFileSize: 5,
+    MAXFileSize: 50,
     CompressAvatarSize: 100,
     revokeMsgTimeLimit: 2*60*1000,
     inviteLink: 'http://chat.alphaz.cn/invite/',
