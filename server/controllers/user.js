@@ -14,16 +14,39 @@ module.exports = {
             userN = yield User.findOne({nickname: nickname}),
             room = yield Room.findOne({name: config.INIT_ROOM}),
             salt = yield bluebird.promisify(bcrypt.genSalt)(10);
-        password = yield bluebird.promisify(bcrypt.hash)(password,salt,null); 
+            password = yield bluebird.promisify(bcrypt.hash)(password,salt,null); 
         if(user && room && userN)  {
             return cb({ isError: true, errMsg: 'ERROR1002'});
         }
-        let rooms = [room._id];
-        let resault  = yield User.create({ nickname, email, password, rooms });
+
+        let rooms = [room._id]
+            privateRoom = null;
+
+        const admin = yield User.findOne({email: config.INIT_ADMIN_EMAIL});
+        if(admin) {
+            //private room
+            privateRoom = new Room({
+                info: "私人客服助理",
+                name: nickname + "的私人客服"
+            })
+            privateRoom.users.push(admin._id);
+            rooms.push(privateRoom._id)    
+        }
+        
+        let resault  = yield User.create({ nickname, email, password, rooms});
         if(resault){ 
             room.users.push(resault._id);
-            if(email === config.INIT_ADMIN_EMAIL) room.creater = resault._id;
+            if(email === config.INIT_ADMIN_EMAIL) {
+                room.creater = resault._id;
+            }
             yield room.save();
+            if(privateRoom) {
+                privateRoom.creater = resault._id
+                privateRoom.users.push(resault._id)
+                yield privateRoom.save();
+            }
+            
+        
             let exp = Math.floor((new Date().getTime())/1000) + 60 * 60 * 24 * 30;
             let verify = jwt.sign({ user: resault._id, exp: exp },JWT_KEY);
             return cb({ token:verify });
