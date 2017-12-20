@@ -30,7 +30,9 @@ module.exports = {
                 name: nickname + "的私人客服"
             })
             privateRoom.users.push(admin._id);
-            rooms.push(privateRoom._id)    
+            rooms.push(privateRoom._id)
+            admin.rooms.push(privateRoom._id)
+            admin.save()    
         }
         
         let resault  = yield User.create({ nickname, email, password, rooms});
